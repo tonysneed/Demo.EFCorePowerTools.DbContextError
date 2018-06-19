@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ClassLibrary1
 {
-    public partial class NorthwindslimContext : DbContext
+    public partial class NorthwindSlimContext : DbContext
     {
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
@@ -16,12 +16,8 @@ namespace ClassLibrary1
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Territory> Territory { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public NorthwindSlimContext(DbContextOptions<NorthwindSlimContext> options) : base(options)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Data Source='(localdb)\\MsSqlLocalDb';Integrated Security=True;Pooling=False;Initial Catalog='NorthwindSlim'");
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
